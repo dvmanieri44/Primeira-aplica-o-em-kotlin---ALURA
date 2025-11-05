@@ -8,6 +8,7 @@ import java.util.*
 
 fun main() {
 
+    //Classe principal utilizada para inicar games
 
     val leitura = Scanner(System.`in`)
     val gamer = Gamer.criarGamer(leitura)
