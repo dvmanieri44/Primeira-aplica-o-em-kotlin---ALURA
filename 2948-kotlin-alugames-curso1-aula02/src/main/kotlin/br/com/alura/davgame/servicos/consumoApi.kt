@@ -1,8 +1,10 @@
 package br.com.alura.davgame.servicos
 
+import br.com.alura.davgame.modelo.Gamer
 import br.com.alura.davgame.modelo.InfoGamer
 import br.com.alura.davgame.modelo.InfoJogo
 import br.com.alura.davgame.modelo.Jogo
+import br.com.alura.davgame.utils.retornaGamer
 import com.google.gson.Gson
 import java.net.URI
 import java.net.http.HttpClient
@@ -37,7 +39,7 @@ class consumoApi {
         return meuInfoJogo
     }
 
-    fun buscaGamers (): List<InfoGamer>?{
+    fun buscaGamers (): List<Gamer>?{
 
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
@@ -51,7 +53,11 @@ class consumoApi {
 
         val listaGamers = jsonAdapter.fromJson(jsonString)
 
-        return listaGamers
+        val listaGamersConvertida = listaGamers?.map {
+            infoGamer -> infoGamer.retornaGamer()
+        }
+
+        return listaGamersConvertida
 
     }
 

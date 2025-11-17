@@ -10,6 +10,9 @@ fun main() {
 
     //Classe principal utilizada para inicar games
 
+    // Próxima aula: "Refatorando código"
+
+
     val leitura = Scanner(System.`in`)
     val gamer = Gamer.criarGamer(leitura)
     println("Cadastro concluido com sucesso!")
