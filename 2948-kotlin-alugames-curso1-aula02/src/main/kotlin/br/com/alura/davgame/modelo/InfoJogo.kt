@@ -1,7 +1,10 @@
 package br.com.alura.davgame.modelo
 
-data class InfoJogo(val info: InfoApiShark) {
-    override fun toString(): String {
-        return info.toString()
-    }
+import com.google.common.base.MoreObjects
+
+data class InfoJogo(val titulo: String,
+                    val capa: String,
+                    val preco: Float,
+                    val descricao: String) {
+
 }

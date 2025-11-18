@@ -5,9 +5,11 @@ import br.com.alura.davgame.servicos.consumoApi
 fun main() {
     val testeConsumo = consumoApi()
 
-    val gamers = testeConsumo.buscaGamers()
+   // val gamers = testeConsumo.buscaGamers()
 
-    println(gamers)
+    val jogo = testeConsumo.buscaJogo(1)
+
+    println(jogo)
 
 
 }

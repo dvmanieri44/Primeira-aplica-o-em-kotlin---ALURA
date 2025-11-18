@@ -5,7 +5,9 @@ import br.com.alura.davgame.modelo.InfoGamer
 import br.com.alura.davgame.modelo.InfoJogo
 import br.com.alura.davgame.modelo.Jogo
 import br.com.alura.davgame.utils.retornaGamer
+import br.com.alura.davgame.utils.retornaJogos
 import com.google.gson.Gson
+import com.squareup.moshi.Json
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -20,24 +22,27 @@ import java.io.File
 class consumoApi {
 
 
-    fun buscaJogo (id: String): InfoJogo{
+    fun buscaJogo (id: Int): Jogo?{
 
-        val client: HttpClient = HttpClient.newHttpClient()
-        val request = HttpRequest.newBuilder()
-            .uri(URI.create("https://www.cheapshark.com/api/1.0/games?id="+id))
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
             .build()
 
-        val response = client
-            .send(request, BodyHandlers.ofString())
+        val type = Types.newParameterizedType(List::class.java, InfoJogo::class.java)
 
-        val json = response.body()
+        val jsonAdapter = moshi.adapter<List<InfoJogo>>(type)
 
-        val gson = Gson()
+        val jsonString = File("src/main/kotlin/br/com/alura/davgame/dados/jogos.json").readText()
 
-        val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
+        val listaJogos = jsonAdapter.fromJson(jsonString)
 
-        return meuInfoJogo
+        val listaJogosConvertida = listaJogos?.map {
+                InfoJogo -> InfoJogo.retornaJogos()
+        }
+
+        return listaJogosConvertida?.get(id)
     }
+
 
     fun buscaGamers (): List<Gamer>?{
 
@@ -56,6 +61,8 @@ class consumoApi {
         val listaGamersConvertida = listaGamers?.map {
             infoGamer -> infoGamer.retornaGamer()
         }
+
+
 
         return listaGamersConvertida
 
