@@ -29,7 +29,8 @@ fun main() {
         val chamada = runCatching {
             meuJogo = Jogo(
                 infomacaoJogo?.titulo ?: "Sem titulo",
-                infomacaoJogo?.descricao?:"Sem descrição"
+                infomacaoJogo?.descricao?:"Sem descrição",
+                infomacaoJogo?.preco?:0.0
 
             )
 

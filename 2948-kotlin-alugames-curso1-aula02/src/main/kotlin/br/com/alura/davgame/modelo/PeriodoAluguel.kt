@@ -1,3 +1,11 @@
 package br.com.alura.davgame.modelo
 
-data class PeriodoAluguel()
+import java.time.LocalDate
+import java.time.Period
+
+data class PeriodoAluguel(val dataInicial: LocalDate,
+                          val dataEntrega: LocalDate,
+                          val emDias: Int = Period.between(dataInicial,dataEntrega).days
+){
+
+}

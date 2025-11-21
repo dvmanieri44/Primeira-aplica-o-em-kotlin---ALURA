@@ -21,7 +21,6 @@ import java.io.File
 
 class consumoApi {
 
-    //Todo: Falta arrumar a classe MAIN que eu alterei e criar um método que retorna todos os jogos
     //Todo: Parei na tula 02 do módulo 02 que é estruturando aluguel
 
 
@@ -45,6 +44,7 @@ class consumoApi {
 
         return listaJogosConvertida?.get(id)
     }
+
 
 
     fun buscaGamers (): List<Gamer>?{

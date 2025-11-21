@@ -9,6 +9,7 @@ data class Gamer(val nome:String, var email: String){
     var dataNascimento:String? = null
 
 
+
     var usuario:String? = null
         set(value){
             field = value
@@ -21,6 +22,7 @@ data class Gamer(val nome:String, var email: String){
         private set
 
     val jogosBuscados = mutableListOf<Jogo?>()
+    val jogosAlugados = mutableListOf<String?>()
 
 
     constructor(nome: String,email: String,dataNascimento:String,usuario:String):
@@ -39,6 +41,15 @@ data class Gamer(val nome:String, var email: String){
         }else{
             throw IllegalArgumentException("Email inválido")
         }
+    }
+
+    fun alugaJogo(jogo: Jogo?,periodoAluguel: PeriodoAluguel): Aluguel{
+        val aluguel = Aluguel(this,jogo,periodoAluguel)
+        jogosAlugados.add(jogo?.titulo)
+
+        return aluguel
+
+
     }
 
 

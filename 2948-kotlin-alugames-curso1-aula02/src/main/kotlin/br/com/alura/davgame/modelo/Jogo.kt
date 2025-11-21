@@ -1,8 +1,11 @@
 package br.com.alura.davgame.modelo
 
-data class Jogo(val titulo:String,
-            val capa:String) {
-            var descricao: String? = null
+data class Jogo(
+    val titulo: String,
+    val capa: String,
+    val preco: Double
+) {
+    var descricao: String? = null
 
 
 
