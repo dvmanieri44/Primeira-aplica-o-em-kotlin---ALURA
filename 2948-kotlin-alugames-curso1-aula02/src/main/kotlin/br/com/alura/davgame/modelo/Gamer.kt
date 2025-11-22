@@ -8,6 +8,8 @@ data class Gamer(val nome:String, var email: String){
 
     var dataNascimento:String? = null
 
+    var plano: Plano = PlanoAvulso("BRONZE")
+
 
 
     var usuario:String? = null
